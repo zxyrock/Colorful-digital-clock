@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>炫彩数字时钟效果</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="clock_box">
+    <div class="clock">
+      <p id="time">12:12:12 AM</p>
+    </div>
+  </div>
+  <script>
+    var time = document.querySelector("#time");
+
+    // 创建一个时间函数
+    function up(time_el) {
+      // 获取当前时间
+      let date = new Date();
+      let h = date.getHours();
+      let m = date.getMinutes();
+      let s = date.getSeconds();
+      let day_night = "AM"
+
+      // 设置区分上午与下午
+      if (h > 12) {
+        h = h - 12;
+        day_night = "PM"
+      }
+      // 若时间数值小于10，则在前面补充0
+      if (h < 10) {h = "0" + h;}
+      if (m < 10) {m = "0" + m;}
+      if (s < 10) {s = "0" + s;}
+
+      // 拼接时间并且赋值给item元素的文本中，从而显示
+      time.textContent = h + ":" + m + ":" + s + " " + day_night;
+    }
+
+    // 定时器，实时更新
+    setInterval(()=>{
+      up(time)
+    },0)
+  </script>
+</body>
+
+</html>
